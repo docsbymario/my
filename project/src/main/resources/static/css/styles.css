@@ -1,0 +1,420 @@
+/* Start Fonts */
+
+@font-face {
+  font-family: FunnelSansRegular;
+  src: url(../fonts/FunnelSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: FunnelSansLight;
+  src: url(../fonts/FunnelSans-Light.ttf);
+}
+
+@font-face {
+  font-family: IBMPlexSerifRegular;
+  src: url(../fonts/IBMPlexSerif-Regular.ttf);
+}
+
+/* End Fonts */
+
+/* Start General */
+
+html {
+    min-height: 100%;
+}
+
+body {
+    background-color: #111111;
+    color: white;
+    font-family: FunnelSansLight;
+    margin: 0;
+    min-height: 100vh;
+}
+
+a {
+    color: inherit;
+    width: 100%;
+}
+
+.centered {
+    align-items: center;
+}
+
+/* End General */
+
+/* Start Colors */
+
+.secondary {
+    color: #939393;
+}
+
+.secondary a:hover {
+    color:white;
+}
+
+.third {
+    color: #706f6f;
+}
+
+.blue {
+    background-color: #0cadea;
+}
+
+.green {
+    background-color: #0cea63;
+}
+
+.yellow {
+    background-color: #eaaa0c;
+}
+
+.red {
+    background-color: #ea190c;
+}
+
+/* End Colors */
+
+/* Start Popup */
+
+.popup {
+    background-color: #1e66af;
+    min-height: 2rem;
+    max-height: 3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    font-family: FunnelSansRegular;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.2);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.popup-text {
+    flex: 1;
+}
+
+.popup-close {
+    justify-content: flex-end;
+}
+
+.popup-close a {
+    text-decoration: none;
+}
+
+/* End Popup */
+
+/* Start Menu */
+
+.menu {
+    background-color: #1e1e1e;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    font-family: FunnelSansRegular;
+    min-height: 3.5vh;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.2);
+    box-sizing: border-box;
+    width: 100%;
+    position: sticky;
+    top: 0;
+}
+
+.menu-title {
+    flex: 1;
+}
+
+.menu-title a {
+    text-decoration: none;
+    padding: .4rem;
+    border-radius: .5rem;
+}
+
+.menu-title a:hover {
+    background-color: #303030;
+}
+
+.menu-search {
+    flex: 1;
+}
+
+.menu-items {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 1.5vh;
+    justify-content: flex-end;
+}
+
+.menu-item {
+    padding: .4rem;
+    border-radius: .5rem;
+}
+
+.menu-item a {
+    text-decoration: none;
+}
+
+.menu-item:hover {
+    background-color: #303030;
+    transition: all 0.1s ease-out;
+}
+
+.active {
+    background-color: #303030;
+}
+
+@media screen and (max-width: 850px) {
+    .menu-search, .menu-item-text {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 850px) {
+    .mobile {
+        display: none;
+    }
+}
+
+/* End Menu */
+
+/* Start Inputs */
+
+input[type=text] {
+    background-color: #242424;
+    border: 1px solid #696969;
+    border-radius: 3px;
+    color: white;
+    padding: 1vh;
+    min-width: 15rem;
+    width: 100%;
+}
+
+input[type=text]:hover {
+    background-color: #2c2c2c;
+}
+
+input[type=text]:focus {
+    background-color: #2c2c2c;
+    outline: none;
+}
+
+.searchbox {
+    flex: 1;
+}
+
+/* End Inputs */
+
+/** Start Box **/
+
+.area {
+    padding: 1rem;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.area-grid {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 20rem);
+    gap: 1rem;
+    justify-content: center;
+}
+
+.area-small {
+    flex: 1 1 20rem;
+    flex-wrap: wrap;
+}
+
+.area-medium {
+    flex: 3 1 30rem;
+    flex-wrap: wrap;
+}
+
+.box-area {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.centered-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+    padding: 5vh;
+    gap: 5vh;
+    flex-wrap: wrap;
+}
+
+.box {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.box-header {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 5vh;
+    max-height: 6vh;
+    font-size: 1.25rem;
+    background-color: #242323;
+    width: 100%;
+    font-family: FunnelSansRegular;
+    padding: .5vh;
+}
+
+.box-content {
+    flex: 6;
+    display: flex;
+    flex-direction: column;
+    padding: .75em;
+    gap: 5px;
+    justify-content: flex-start;
+}
+
+.box-content-item {
+    flex: 1;
+}
+
+.box-actions {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #242323;
+    width: 100%;
+    padding: .75em;
+}
+
+.box a {
+    text-decoration: none;
+}
+
+.box-actions:hover {
+    background-color: #383838;
+}
+
+.box-header-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-grid {
+    background-color: #2d2d2d;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 10px;
+    gap: .25rem;
+    min-height: 7rem;
+    transition: all .1s ease-in-out;
+}
+
+.box-grid-title {
+    flex: 1;
+    font-size: 1.25rem;
+}
+
+.box-grid-content {
+    flex: 1;
+}
+
+.box-grid:hover {
+    background-color: #3d3d3d;
+    transform: scale(1.05);
+}
+
+.area-grid a {
+    text-decoration: none;
+}
+
+.box-button-area {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Dynamically wrapping grid */
+    justify-content: center;
+}
+
+.box-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: .5rem;
+    border-radius: .5rem;
+    max-height: 100px;
+}
+
+.box-button:hover {
+    background-color: #3d3d3d;
+    transition: all .1s ease-in-out;
+}
+
+/* End Box */
+
+/* Start Badges */
+
+.badge-container {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+}
+
+.badge {
+    padding-left: .5rem;
+    padding-right: .5rem;
+    font-size: .75rem;
+    font-weight: bold;
+    border-radius: .25rem;
+}
+
+/* End Badges */
+
+/* Start Group */
+
+.group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-height: 15rem;
+}
+
+.group-item {
+    flex: 1;
+}
+
+/* End Group */
+
+/* Start Others */
+
+.link-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.link-item {
+    flex: 0;
+    min-width: 8rem;
+}
+
+/* End Others */

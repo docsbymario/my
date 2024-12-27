@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto21
+    commands:
+      - echo Updating to corretto21
+  build:
+    commands:
+      - echo Building the project with Maven...
+      - aws s3 cp s3://docsbymario-env/.env ./project/src/main/resources/.env --region eu-north-1
+      - cd project
+      - mvn clean install
+  post_build:
+    commands:
+      - echo Build complete.
+      - mvn test
+      - echo Moving artifact to the root of the deployment bundle...
+      - cd ..
+      - cp project/target/project-0.0.1-SNAPSHOT.jar ./application.jar
+      - aws s3 cp s3://docsbymario-env/.env ./.env --region eu-north-1
+artifacts:
+  files:
+    - application.jar
