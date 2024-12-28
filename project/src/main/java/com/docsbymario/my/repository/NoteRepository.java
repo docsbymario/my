@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface NoteRepository extends MongoRepository<Note, String> {
     List<Note> findByUserId(String userId);
+    Note findByTitle(String title);
 }

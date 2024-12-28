@@ -31,7 +31,7 @@
 
         function openModal(title, content) {
             document.getElementById("viewModalTitle").innerHTML = title;
-            document.getElementById("viewModalContent").innerHTML = content;
+            document.getElementById("viewModalContent").innerHTML = title;
             document.getElementById("viewModal").style.display = "block";
         }
 
@@ -79,48 +79,26 @@
         <input type="text" placeholder="Type something here to search..." name="app-query-mobile">
     </div>
 </form>
+<div class="area padded-extra">
+    <form th:action="@{/notes/add}" method="POST" class="form">
+        <h1>Add a note</h1>
 
-<div class="padded">
-    <div th:insert="~{notification.html :: notification}"></div>
+        <div th:insert="~{notification.html :: notification}"></div>
+
+        <div class="form-item">
+            <label for="name">Title</label>
+            <input type="text" id="name" name="title" class="textbox dark" required/>
+        </div>
+        <div class="form-item">
+            <label for="name">Content</label>
+            <textarea id="content" name="content" class="textbox dark textarea textarea-add" required></textarea>
+        </div>
+        <div class="form-item">
+            <button class="btn-dark">Create</button>
+        </div>
+    </form>
 </div>
 
-<div class="area-grid">
-    <a th:href="@{/notes/add}">
-        <div class="box-grid add dark">
-            <div class="circle">
-                <i class="fas fa-plus plus"></i>
-            </div>
-        </div>
-    </a>
-    <div class="box-grid light" th:each="note : ${notes}">
-        <div class="box-grid-title">
-            <span th:text="${note.title}"></span>
-        </div>
-        <div class="box-grid-content secondary">
-            <button class="btn-dark" th:data-title="${note.title}" th:data-content="${note.content}"
-                    onclick="openModal(this.getAttribute('data-title'), this.getAttribute('data-content'))">View
-            </button>
-            <button class="btn-dark">Edit</button>
-            <a th:href="@{/notes/delete?noteId={noteId}(noteId=${note.id})}">
-                <button class="btn-dark">Delete</button>
-            </a>
-        </div>
-    </div>
-</div>
-
-<!-- The Modal -->
-<div id="viewModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <div class="modal-items">
-            <textarea class="textbox-invisible textarea textbox-title" id="viewModalTitle" readonly="true"></textarea>
-            <textarea id="viewModalContent" class="textbox-invisible textarea" readonly="true"></textarea>
-        </div>
-    </div>
-
-</div>
 
 </body>
 </html>

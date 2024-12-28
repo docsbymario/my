@@ -116,6 +116,30 @@ a {
 
 /* End Colors */
 
+/* Start Notification */
+
+.notification {
+    display: flex;
+    flex-direction: row;
+    background-color: #0f4878;
+    padding: 1rem;
+    font-size: .9em;
+}
+
+.notification-text {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.notification-close {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* End Notification */
+
 /* Start Login */
 .login-box {
     display: flex;
@@ -341,12 +365,21 @@ a {
 /** Start Box **/
 
 .area {
-    padding: 1rem;
     font-size: 1rem;
     display: flex;
     flex-direction: row;
     gap: 2rem;
     flex-wrap: wrap;
+}
+
+.padded {
+    padding: 1rem;
+}
+
+.padded-extra {
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 .area-grid {
@@ -459,6 +492,30 @@ a {
     transition: all .1s ease-in-out;
 }
 
+.add {
+    justify-content: center;
+    align-items: center;
+}
+
+.circle {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 1px solid #545454;
+    background-color: #252525;
+    padding: 1rem;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+}
+
+.plus {
+    font-size: 2rem;
+    line-height: 1;
+    height: 100%;
+    color: #717171;
+}
+
 .box-grid-title {
     flex: 1;
     font-size: 1.25rem;
@@ -530,6 +587,52 @@ a {
 }
 
 /* End Group */
+
+/* Start Form */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.textarea {
+    resize: none;
+    font-family: FunnelSansRegular;
+}
+
+.textarea-add {
+    min-height: 15rem;
+}
+
+.textbox-title {
+    font-size: 1.25rem;
+}
+
+.textbox-invisible {
+    border: 0;
+    background-color: inherit;
+}
+
+.textbox-invisible:hover {
+    border: 0;
+    background-color: inherit;
+}
+
+.textbox-invisible:focus {
+    border: 0;
+    background-color: inherit;
+    outline: none;
+}
+
+/* End Form */
 
 /* Start Others */
 

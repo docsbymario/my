@@ -53,7 +53,7 @@
             <div class="login-box-title">
                 <h4 class="logo">DocsByMario</h4>
                 <h2>Sign in</h2>
-                <div class="notification" th:fragment="message" th:if="${errorMessage != null}">
+                <div th:fragment="message" th:if="${errorMessage != null}">
                     <span class="login-info" th:text="${errorMessage}"></span>
                 </div>
             </div>

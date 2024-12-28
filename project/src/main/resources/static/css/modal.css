@@ -37,3 +37,8 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.modal-items {
+    display: flex;
+    flex-direction: column;
+}

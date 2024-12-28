@@ -21,11 +21,9 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-public class MainController {
+public class AuthController {
     @Autowired
     private RegisterService registerService;
-    @Autowired
-    private NoteService noteService;
 
     @GetMapping("/register")
     @RedirectIfAuthenticated
@@ -73,27 +71,6 @@ public class MainController {
                 modelAndView = new ModelAndView("register.html");
                 modelAndView.addObject("errorMessage", "There was a servlet error while trying to create an account for you.");
             }
-        }
-
-        return modelAndView;
-    }
-
-    @GetMapping("/")
-    public ModelAndView getHome() {
-        ModelAndView modelAndView = new ModelAndView("index.html");
-        return modelAndView;
-    }
-
-    @GetMapping("/notes")
-    public ModelAndView getNotes(Principal principal) {
-        ModelAndView modelAndView;
-
-        try {
-            List<Note> notes = noteService.findByUserId(principal);
-            modelAndView = new ModelAndView("notes.html");
-            modelAndView.addObject("notes", notes);
-        } catch (UsernameDoesNotExistException e) {
-            modelAndView = new ModelAndView("redirect:/");
         }
 
         return modelAndView;

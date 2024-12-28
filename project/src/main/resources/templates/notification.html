@@ -1,0 +1,12 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<div class="notification" id="notification" th:fragment="notification" th:if="${errorMessage != null}">
+    <div class="notification-text" th:text="${errorMessage}"></div>
+</div>
+</body>
+</html>
