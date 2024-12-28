@@ -1,4 +1,4 @@
-package com.docsbymario.my.exception.impl;
+package com.docsbymario.my.exception.impl.user;
 
 import com.docsbymario.my.exception.GenericException;
 

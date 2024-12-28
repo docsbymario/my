@@ -2,7 +2,10 @@ package com.docsbymario.my.controller;
 
 import com.docsbymario.my.aop.annotation.RedirectIfAuthenticated;
 import com.docsbymario.my.dto.RegisterDto;
+import com.docsbymario.my.entity.Note;
 import com.docsbymario.my.exception.GenericException;
+import com.docsbymario.my.exception.impl.user.UsernameDoesNotExistException;
+import com.docsbymario.my.service.NoteService;
 import com.docsbymario.my.service.RegisterService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,10 +17,15 @@ import org.springframework.security.web.WebAttributes;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
+import java.util.List;
+
 @RestController
 public class MainController {
     @Autowired
     private RegisterService registerService;
+    @Autowired
+    private NoteService noteService;
 
     @GetMapping("/register")
     @RedirectIfAuthenticated
@@ -77,8 +85,17 @@ public class MainController {
     }
 
     @GetMapping("/notes")
-    public ModelAndView getNotes() {
-        ModelAndView modelAndView = new ModelAndView("notes.html");
+    public ModelAndView getNotes(Principal principal) {
+        ModelAndView modelAndView;
+
+        try {
+            List<Note> notes = noteService.findByUserId(principal);
+            modelAndView = new ModelAndView("notes.html");
+            modelAndView.addObject("notes", notes);
+        } catch (UsernameDoesNotExistException e) {
+            modelAndView = new ModelAndView("redirect:/");
+        }
+
         return modelAndView;
     }
 }

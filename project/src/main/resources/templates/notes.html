@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/magicpattern.css">
+    <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" href="https://docsbymario-env.s3.eu-north-1.amazonaws.com/fontawesome/css/all.min.css?v=1.0">
 
     <script>
@@ -28,6 +29,23 @@
             }
         }
 
+        function openModal(title, content) {
+            document.getElementById("viewModalTitle").innerHTML = title;
+            document.getElementById("viewModalContent").innerHTML = title;
+            document.getElementById("viewModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("viewModal").style.display = "none";
+            document.getElementById("viewModalTitle").innerHTML = "Unknown";
+            document.getElementById("viewModalContent").innerHTML = "Unknown";
+        }
+
+        window.onclick = function(event) {
+          if (event.target == document.getElementById("viewModal")) {
+            document.getElementById("viewModal").style.display = "none";
+          }
+        }
 
     </script>
 
@@ -47,7 +65,7 @@
     <input type="submit" style="display: none">
     <div class="menu light">
         <div class="menu-title light">
-            <a href="http://docsbymario.com"><span class="logo">DocsByMario</span></a> | <a th:href="@{/}">Notes</a>
+            <a href="http://docsbymario.com"><span class="logo">DocsByMario</span></a> | <a th:href="@{/}">Account</a>
         </div>
         <div class="menu-items">
             <div class="menu-item light">
@@ -64,76 +82,28 @@
 </form>
 
 <div class="area-grid">
-    <div class="box-grid light">
-        <a href="#">
-            <div class="box-grid-title">
-                <i class="fa-solid fa-user"></i> Change username</span>
-            </div>
-            <div class="box-grid-content secondary">
-                <span>You can change your name. And you're allowed to do it for free.</span>
-            </div>
-        </a>
+    <div class="box-grid light" th:each="note : ${notes}">
+        <div class="box-grid-title">
+            <span th:text="${note.title}"></span>
+        </div>
+        <div class="box-grid-content secondary">
+            <button class="btn-dark" th:data-title="${note.title}" th:data-content="${note.content}" onclick="openModal(this.getAttribute('data-title'), this.getAttribute('data-content'))">View</button>
+            <button class="btn-dark">Edit</button>
+            <button class="btn-dark">Delete</button>
+        </div>
     </div>
-    <div class="box-grid light">
-        <a href="#">
-            <div class="box-grid-title">
-                <i class="fa-solid fa-lock"></i> Change password</span>
-            </div>
-            <div class="box-grid-content secondary">
-                <span>Did you make a terrible choice regarding your password?</span>
-            </div>
-        </a>
+</div>
+
+<!-- The Modal -->
+<div id="viewModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h1 id="viewModalTitle">Unknown</h1>
+        <p id="viewModalContent">Unknown</p>
     </div>
-    <div class="box-grid light">
-        <a href="#">
-            <div class="box-grid-title">
-                <i class="fa-solid fa-pen"></i> Notes</span>
-            </div>
-            <div class="box-grid-content secondary">
-                <span>Your private space. Unlimited (or something like that).</span>
-            </div>
-        </a>
-    </div>
-    <div class="box-grid light">
-        <a href="#">
-            <div class="box-grid-title">
-                <i class="fa-solid fa-chart-simple"></i> Statistics</span>
-            </div>
-            <div class="box-grid-content secondary">
-                <span>You can see the total time wasted on our apps. Think before clicking this button.</span>
-            </div>
-        </a>
-    </div>
-    <div class="box-grid light">
-        <a href="#">
-            <div class="box-grid-title">
-                <i class="fa-solid fa-handshake-angle"></i> My Tickets</span>
-            </div>
-            <div class="box-grid-content secondary">
-                <span>If something doesn't work right, feel free to open a support ticket.</span>
-            </div>
-        </a>
-    </div>
-    <div class="box-grid light">
-        <a href="#">
-            <div class="box-grid-title">
-                <i class="fa-solid fa-dollar-sign"></i> Donate</span>
-            </div>
-            <div class="box-grid-content secondary">
-                <span>Everything we do costs money. Help us with a donation.</span>
-            </div>
-        </a>
-    </div>
-    <div class="box-grid light">
-        <a href="#">
-            <div class="box-grid-title">
-                <i class="fa-solid fa-code"></i> Developer Tools</span>
-            </div>
-            <div class="box-grid-content secondary">
-                <span>Are you a developer? I think there's a way you could help us...</span>
-            </div>
-        </a>
-    </div>
+
 </div>
 
 </body>

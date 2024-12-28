@@ -2,9 +2,9 @@ package com.docsbymario.my.service;
 
 import com.docsbymario.my.dto.RegisterDto;
 import com.docsbymario.my.entity.User;
-import com.docsbymario.my.exception.impl.EmailAlreadyExistsException;
-import com.docsbymario.my.exception.impl.PasswordDoesNotSatisfyConstraintsException;
-import com.docsbymario.my.exception.impl.PasswordsDoNotMatchException;
+import com.docsbymario.my.exception.impl.user.EmailAlreadyExistsException;
+import com.docsbymario.my.exception.impl.user.PasswordDoesNotSatisfyConstraintsException;
+import com.docsbymario.my.exception.impl.user.PasswordsDoNotMatchException;
 import com.docsbymario.my.repository.UserRepository;
 import com.docsbymario.my.validator.PasswordValidator;
 import org.springframework.beans.factory.annotation.Autowired;
