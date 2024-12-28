@@ -55,7 +55,7 @@ public class AuthController {
     public ModelAndView postRegister(HttpServletRequest httpServletRequest, @ModelAttribute RegisterDto registerDto) {
         ModelAndView modelAndView;
 
-        if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
+        if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated() && !SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
             modelAndView = new ModelAndView("redirect:/");
         }
         else {

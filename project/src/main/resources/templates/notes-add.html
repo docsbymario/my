@@ -79,15 +79,27 @@
         <input type="text" placeholder="Type something here to search..." name="app-query-mobile">
     </div>
 </form>
-<div class="area padded-extra">
+<div class="area-three">
+    <div class="area-three-small">
+    </div>
+    <div class="area-three-large">
     <form th:action="@{/notes/add}" method="POST" class="form">
-        <h1>Add a note</h1>
+        <div class="form-header">
+            <div class="form-title">
+                Add a note
+            </div>
+            <div class="form-info secondary">
+                <div class="form-info-item"><span class="badge dark-blue">Notice</span> Notes are at this moment only visible to you and cannot be shared directly through this application.</div>
+                <div class="form-info-item"><span class="badge red">Early Version Notice</span> Notes is still in the alpha version, so <strong>do not</strong> share sensitive information or consider it as the only backup source for your notes. Your data may be erased at any time, although we do not want that.</div>
+            </div>
+        </div>
 
         <div th:insert="~{notification.html :: notification}"></div>
 
         <div class="form-item">
             <label for="name">Title</label>
             <input type="text" id="name" name="title" class="textbox dark" required/>
+            <span class="form-tip secondary"><i class="fas fa-circle-info"></i> Note titles should be unique per user and should not exceed more than 40 characters. The title cannot be empty.</span>
         </div>
         <div class="form-item">
             <label for="name">Content</label>
@@ -97,6 +109,10 @@
             <button class="btn-dark">Create</button>
         </div>
     </form>
+    </div>
+    <div class="area-three-small">
+
+    </div>
 </div>
 
 

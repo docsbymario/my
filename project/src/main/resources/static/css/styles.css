@@ -114,6 +114,10 @@ a {
     background-color: #ea190c;
 }
 
+.dark-blue {
+    background-color: #0f4878;
+}
+
 /* End Colors */
 
 /* Start Notification */
@@ -372,6 +376,21 @@ a {
     flex-wrap: wrap;
 }
 
+.area-three {
+    font-size: 1rem;
+    display: flex;
+    flex-direction: row;
+    padding-top: 1.5rem;
+}
+
+.area-three-small {
+    flex: 1;
+}
+
+.area-three-large {
+    flex: 2;
+}
+
 .padded {
     padding: 1rem;
 }
@@ -569,6 +588,7 @@ a {
     font-size: .75rem;
     font-weight: bold;
     border-radius: .25rem;
+    color: white;
 }
 
 /* End Badges */
@@ -603,9 +623,33 @@ a {
     width: 100%;
 }
 
+.form-tip {
+    font-size: .90rem;
+}
+
+.form-header {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.form-title {
+    font-size: 2.5rem;
+}
+
+.form-info {
+    display: flex;
+    flex-direction: column;
+    gap: .45rem;
+}
+
 .textarea {
     resize: none;
     font-family: FunnelSansRegular;
+}
+
+.textarea-content {
+    min-height: 10rem;
 }
 
 .textarea-add {
