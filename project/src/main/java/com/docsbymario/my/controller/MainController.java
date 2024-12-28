@@ -75,4 +75,10 @@ public class MainController {
         ModelAndView modelAndView = new ModelAndView("index.html");
         return modelAndView;
     }
+
+    @GetMapping("/notes")
+    public ModelAndView getNotes() {
+        ModelAndView modelAndView = new ModelAndView("notes.html");
+        return modelAndView;
+    }
 }

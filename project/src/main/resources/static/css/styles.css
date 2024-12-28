@@ -36,7 +36,6 @@ body {
     color: white;
     font-family: FunnelSansLight;
     margin: 0;
-    min-height: 100vh;
 }
 
 .body-padded {
@@ -209,7 +208,7 @@ a {
 }
 
 .light {
-    background-color: white;
+    background-color: #fcfcfc;
     color: black;
 }
 
@@ -451,7 +450,6 @@ a {
 }
 
 .box-grid {
-    background-color: #2d2d2d;
     display: flex;
     flex-direction: column;
     padding: 1rem;
@@ -471,7 +469,6 @@ a {
 }
 
 .box-grid:hover {
-    background-color: #3d3d3d;
     transform: scale(1.05);
 }
 
