@@ -15,20 +15,36 @@
   src: url(../fonts/IBMPlexSerif-Regular.ttf);
 }
 
+@font-face {
+  font-family: LexendMedium;
+  src: url(../fonts/Lexend-Medium.ttf);
+}
+
 /* End Fonts */
 
 /* Start General */
+
+* {
+    box-sizing: border-box;
+}
 
 html {
     min-height: 100%;
 }
 
 body {
-    background-color: #111111;
     color: white;
     font-family: FunnelSansLight;
     margin: 0;
     min-height: 100vh;
+}
+
+.body-padded {
+    padding: 5vh;
+}
+
+.body-dark {
+    background-color: #111111;
 }
 
 a {
@@ -38,6 +54,33 @@ a {
 
 .centered {
     align-items: center;
+}
+
+.area-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.btn-dark {
+    padding: .5rem;
+    border: 0;
+    border-radius: 5px;
+    height: 2rem;
+    width: 5rem;
+    background-color: #2d2d2d;
+    color: white;
+}
+
+.btn-dark:hover {
+    background-color: #3a3a3a;
+    transition: all .05s ease-in-out;
+}
+
+.noborder {
+    border: 0;
+    background-color: transparent;
 }
 
 /* End General */
@@ -74,6 +117,59 @@ a {
 
 /* End Colors */
 
+/* Start Login */
+.login-box {
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
+    flex: 1;
+    background-color: white;
+    color: black;
+    max-width: 25rem;
+    min-height: 25rem;
+    padding: 3vh;
+    border-radius: 5px;
+}
+
+.login-box-title {
+}
+
+.login-box-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.login-box-row {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: .5vh;
+}
+
+.login-box-area-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+}
+
+.login-box-area-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.login-info {
+    font-size: .75rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-family: LexendMedium;
+}
+/* End Login */
+
 /* Start Popup */
 
 .popup {
@@ -107,8 +203,17 @@ a {
 
 /* Start Menu */
 
-.menu {
+.dark {
     background-color: #1e1e1e;
+    color: white;
+}
+
+.light {
+    background-color: white;
+    color: black;
+}
+
+.menu {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -133,8 +238,12 @@ a {
     border-radius: .5rem;
 }
 
-.menu-title a:hover {
+.dark.menu-title a:hover {
     background-color: #303030;
+}
+
+.light.menu-title a:hover {
+    background-color: #ededed;
 }
 
 .menu-search {
@@ -159,8 +268,15 @@ a {
 }
 
 .menu-item:hover {
-    background-color: #303030;
     transition: all 0.1s ease-out;
+}
+
+.dark.menu-item:hover {
+    background-color: #303030;
+}
+
+.light.menu-item:hover {
+    background-color: #ededed;
 }
 
 .active {
@@ -183,22 +299,37 @@ a {
 
 /* Start Inputs */
 
-input[type=text] {
-    background-color: #242424;
+.textbox {
     border: 1px solid #696969;
     border-radius: 3px;
-    color: white;
     padding: 1vh;
     min-width: 15rem;
     width: 100%;
 }
 
-input[type=text]:hover {
+.textbox.dark {
+    background-color: #242424;
+}
+
+.textbox.dark:hover {
     background-color: #2c2c2c;
 }
 
-input[type=text]:focus {
+.textbox.dark:focus {
     background-color: #2c2c2c;
+    outline: none;
+}
+
+.textbox.light {
+    background-color: #f5f5f5;
+}
+
+.textbox.light:hover {
+    background-color: #ededed;
+}
+
+.textbox.light:focus {
+    background-color: #ededed;
     outline: none;
 }
 

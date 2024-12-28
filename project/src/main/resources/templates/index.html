@@ -1,9 +1,10 @@
 <html>
 <head>
-    <title>Mock APIs for Testing - Docs by Mario</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Account - DocsByMario</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/magicpattern.css">
     <link rel="stylesheet" href="https://docsbymario-env.s3.eu-north-1.amazonaws.com/fontawesome/css/all.min.css?v=1.0">
 
     <script>
@@ -29,7 +30,7 @@
     </script>
 
 </head>
-<body>
+<body class="body-dark">
 <!--
 <div class="popup" id="popup">
     <div class="popup-text">
@@ -40,27 +41,18 @@
     </div>
 </div>
 -->
-<form action="http://docsbymario.com/apps" method="GET">
+<form th:action="@{/logout}" method="POST">
     <input type="submit" style="display: none">
-    <div class="menu">
-        <div class="menu-title">
-            <a href="/">Mock APIs for Testing</a>
-        </div>
-        <div class="menu-search searchbox">
-            <input type="text" placeholder="Type something here to search..." name="app-query">
+    <div class="menu light">
+        <div class="menu-title light logo">
+            <a href="/">DocsByMario</a>
         </div>
         <div class="menu-items">
-            <div class="menu-item mobile" onclick="showSearchBarOnMobile()" id="search-mobile-button">
-                <i class="fa-solid fa-search"> </i>
-            </div>
-            <div class="menu-item">
-                <a href="http://docsbymario.com/apps"><i class="fa-solid fa-stream"></i> <span class="menu-item-text">Apps</span></a>
-            </div>
-            <div class="menu-item">
-                <a href="#"><i class="fa-solid fa-book"></i> <span class="menu-item-text">Blog</span></a>
-            </div>
-            <div class="menu-item">
-                <a href="#"><i class="fa-solid fa-download"></i> <span class="menu-item-text">Downloads</span></a>
+            <div class="menu-item light">
+                <button type="submit" class="noborder">
+                    <i class="fa-solid fa-sign-out"></i> <span
+                        class="menu-item-text">Logout</span>
+                </button>
             </div>
         </div>
     </div>
@@ -68,52 +60,6 @@
         <input type="text" placeholder="Type something here to search..." name="app-query-mobile">
     </div>
 </form>
-<div class="area-grid">
-    <a href="/swagger">
-        <div class="box-grid">
-            <div class="box-grid-title">
-                <i class="fa-solid fa-school"></i> University
-            </div>
-            <div class="box-grid-content">
-                <div class="badge-container">
-                    <span class="badge blue">GET</span> <span class="badge green">POST</span> <span class="badge yellow">PUT</span> <span class="badge red">DELETE</span>
-                </div>
-            </div>
-            <div class="box-grid-content secondary">
-                Endpoints for managing a university. You can do all sort of calls on students and the faculties of the available university.
-            </div>
-        </div>
-    </a>
-    <a href="#">
-        <div class="box-grid">
-            <div class="box-grid-title">
-                <i class="fa-solid fa-shop"></i> Store
-            </div>
-            <div class="box-grid-content">
-                <div class="badge-container">
-                    <span class="badge blue">GET</span> <span class="badge green">POST</span> <span class="badge yellow">PUT</span> <span class="badge red">DELETE</span>
-                </div>
-            </div>
-            <div class="box-grid-content secondary">
-                Endpoints for operating with an online store. You can manage orders and products that can be bought by your users.
-            </div>
-        </div>
-    </a>
-    <a href="#">
-        <div class="box-grid">
-            <div class="box-grid-title">
-                <i class="fa-solid fa-plane"></i> Tourism
-            </div>
-            <div class="box-grid-content">
-                <div class="badge-container">
-                    <span class="badge blue">GET</span> <span class="badge green">POST</span> <span class="badge yellow">PUT</span> <span class="badge red">DELETE</span>
-                </div>
-            </div>
-            <div class="box-grid-content secondary">
-                Endpoints for managing a touristic location. You can manage a certain amount of hotels, together with their rooms.
-            </div>
-        </div>
-    </a>
-</div>
+
 </body>
 </html>

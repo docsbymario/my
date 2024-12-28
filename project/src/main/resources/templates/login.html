@@ -1,0 +1,89 @@
+<html>
+<head>
+    <title>Sign in - Docs by Mario</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/magicpattern.css">
+    <link rel="stylesheet" href="https://docsbymario-env.s3.eu-north-1.amazonaws.com/fontawesome/css/all.min.css?v=1.0">
+
+    <script>
+        var searchBarDisplayed = false;
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+
+        function showSearchBarOnMobile() {
+            console.log(searchBarDisplayed);
+            document.getElementById("search-mobile").style.display = searchBarDisplayed ? "none" : "inherit";
+
+            searchBarDisplayed = !searchBarDisplayed;
+
+            if (searchBarDisplayed) {
+                document.getElementById("search-mobile-button").classList.add("active");
+            }
+            else {
+                document.getElementById("search-mobile-button").classList.remove("active");
+            }
+        }
+
+
+
+
+
+
+    </script>
+
+</head>
+<body class="body-magicpattern body-padded">
+<!--
+<div class="popup" id="popup">
+    <div class="popup-text">
+        This is a docsbymario.com website. Find out more about <a href="https://docsbymario.com">our products</a>.
+    </div>
+    <div class="popup-close">
+        <a href="#" onClick="closePopup()">X</a>
+    </div>
+</div>
+-->
+<div class="area-center">
+    <form th:action="@{/login}" method="POST" class="login-box">
+        <div class="login-box-area-main">
+            <div class="login-box-title">
+                <h4 class="logo">DocsByMario</h4>
+                <h2>Sign in</h2>
+                <div class="notification" th:fragment="message" th:if="${errorMessage != null}">
+                    <span class="login-info" th:text="${errorMessage}"></span>
+                </div>
+            </div>
+            <div class="login-box-content">
+                <div class="login-box-row">
+                    <input type="text" class="textbox light" name="username" id="username"
+                           placeholder="Username or E-Mail" required/>
+                </div>
+                <div class="login-box-row">
+                    <input type="password" class="textbox light" name="password" id="password" placeholder="Password"
+                           required/>
+                </div>
+            </div>
+        </div>
+        <div class="login-box-area-buttons">
+            <div class="login-box-row">
+                <button class="btn-dark">Sign in</button>
+            </div>
+            <div class="login-box-row">
+                <div class="login-info">
+                    <div>
+                        Don't have an account? <a href="/register">Create one now</a>.
+                    </div>
+                    <div>
+                        Forgot your password? <a href="/reset-password">Reset it</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
