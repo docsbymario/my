@@ -384,7 +384,7 @@ a {
 }
 
 .area-three-small {
-    flex: 1;
+    flex: .75;
 }
 
 .area-three-large {

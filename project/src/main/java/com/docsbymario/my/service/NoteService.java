@@ -3,10 +3,7 @@ package com.docsbymario.my.service;
 import com.docsbymario.my.dto.NoteDto;
 import com.docsbymario.my.entity.Note;
 import com.docsbymario.my.entity.User;
-import com.docsbymario.my.exception.impl.note.NoteDoesNotBelongToPrincipalException;
-import com.docsbymario.my.exception.impl.note.NoteTitleTooLongException;
-import com.docsbymario.my.exception.impl.note.NoteWithIdDoesNotExistException;
-import com.docsbymario.my.exception.impl.note.NoteWithTitleAlreadyExistsException;
+import com.docsbymario.my.exception.impl.note.*;
 import com.docsbymario.my.exception.impl.user.UsernameDoesNotExistException;
 import com.docsbymario.my.repository.NoteRepository;
 import com.docsbymario.my.repository.UserRepository;
@@ -34,7 +31,7 @@ public class NoteService {
         return noteRepository.findByUserId(users.get(0).getId());
     }
 
-    public void createNote(Principal principal, NoteDto noteDto) throws UsernameDoesNotExistException, NoteTitleTooLongException, NoteWithTitleAlreadyExistsException {
+    public void createNote(Principal principal, NoteDto noteDto) throws UsernameDoesNotExistException, NoteTitleTooLongException, NoteWithTitleAlreadyExistsException, NoteTitleCannotBeEmptyException, NoteContentCannotBeEmptyException {
         List<User> users = userRepository.findByUsername(principal.getName());
         if (users.size() == 0) {
             throw new UsernameDoesNotExistException();
@@ -49,16 +46,24 @@ public class NoteService {
             throw new NoteWithTitleAlreadyExistsException();
         }
 
-        noteRepository.save(new Note(users.get(0).getId(), noteDto.getTitle(), noteDto.getContent()));
+        if (noteDto.getTitle().trim().isEmpty()) {
+            throw new NoteTitleCannotBeEmptyException();
+        }
+
+        if (noteDto.getContent().trim().isEmpty()) {
+            throw new NoteContentCannotBeEmptyException();
+        }
+
+        noteRepository.save(new Note(users.get(0).getId(), noteDto.getTitle().trim(), noteDto.getContent().trim()));
     }
 
-    public void deleteNote(Principal principal, String noteId) throws UsernameDoesNotExistException, NoteWithIdDoesNotExistException, NoteDoesNotBelongToPrincipalException {
+    public void deleteNote(Principal principal, NoteDto noteDto) throws UsernameDoesNotExistException, NoteWithIdDoesNotExistException, NoteDoesNotBelongToPrincipalException {
         List<User> users = userRepository.findByUsername(principal.getName());
         if (users.size() == 0) {
             throw new UsernameDoesNotExistException();
         }
 
-        Optional<Note> note = noteRepository.findById(noteId);
+        Optional<Note> note = noteRepository.findById(noteDto.getId());
         if (note.isEmpty()) {
             throw new NoteWithIdDoesNotExistException();
         }
@@ -68,5 +73,32 @@ public class NoteService {
         }
 
         noteRepository.delete(note.get());
+    }
+
+    public void updateNote(Principal principal, NoteDto noteDto) throws UsernameDoesNotExistException, NoteWithIdDoesNotExistException, NoteDoesNotBelongToPrincipalException, NoteTitleCannotBeEmptyException, NoteContentCannotBeEmptyException {
+        List<User> users = userRepository.findByUsername(principal.getName());
+        if (users.size() == 0) {
+            throw new UsernameDoesNotExistException();
+        }
+
+        Optional<Note> note = noteRepository.findById(noteDto.getId());
+        if (note.isEmpty()) {
+            throw new NoteWithIdDoesNotExistException();
+        }
+
+        if (!note.get().getUserId().equals(users.get(0).getId())) {
+            throw new NoteDoesNotBelongToPrincipalException();
+        }
+
+        if (noteDto.getTitle().trim().isEmpty()) {
+            throw new NoteTitleCannotBeEmptyException();
+        }
+
+        if (noteDto.getContent().trim().isEmpty()) {
+            throw new NoteContentCannotBeEmptyException();
+        }
+
+        Note newNote = new Note(noteDto.getId(), note.get().getUserId(), noteDto.getTitle().trim(), noteDto.getContent().trim());
+        noteRepository.save(newNote);
     }
 }

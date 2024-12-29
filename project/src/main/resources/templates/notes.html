@@ -29,23 +29,33 @@
             }
         }
 
-        function openModal(title, content) {
-            document.getElementById("viewModalTitle").innerHTML = title;
-            document.getElementById("viewModalContent").innerHTML = content;
-            document.getElementById("viewModal").style.display = "block";
+        function openModal(modalName, id, title, content) {
+            document.getElementById(modalName + "ModalTitle").innerHTML = title;
+            document.getElementById(modalName + "ModalTitle").value = title;
+            document.getElementById(modalName + "ModalContent").innerHTML = content;
+
+            if (modalName == "edit") {
+                document.getElementById(modalName + "ModalId").value = id;
+            }
+
+            document.getElementById(modalName).style.display = "block";
         }
 
-        function closeModal() {
-            document.getElementById("viewModal").style.display = "none";
-            document.getElementById("viewModalTitle").innerHTML = "Unknown";
-            document.getElementById("viewModalContent").innerHTML = "Unknown";
+        function closeModal(modalName) {
+            document.getElementById(modalName).style.display = "none";
+            document.getElementById(modalName + "ModalTitle").innerHTML = "Unknown";
+            document.getElementById(modalName + "ModalContent").innerHTML = "Unknown";
         }
 
         window.onclick = function(event) {
-          if (event.target == document.getElementById("viewModal")) {
-            document.getElementById("viewModal").style.display = "none";
+          if (event.target == document.getElementById("view") || event.target == document.getElementById("edit")) {
+            document.getElementById("view").style.display = "none";
+            document.getElementById("edit").style.display = "none";
           }
         }
+
+
+
     </script>
 
 </head>
@@ -92,34 +102,54 @@
             </div>
         </div>
     </a>
-    <div class="box-grid light" th:each="note : ${notes}">
+    <form th:action="@{/notes/delete}" method="POST" class="box-grid light" th:each="note : ${notes}">
+        <input type="hidden" name="id" th:value="${note.id}">
+
         <div class="box-grid-title">
             <span th:text="${note.title}"></span>
         </div>
         <div class="box-grid-content secondary">
-            <button class="btn-dark" th:data-title="${note.title}" th:data-content="${note.content}"
-                    onclick="openModal(this.getAttribute('data-title'), this.getAttribute('data-content'))">View
+            <button class="btn-dark" th:data-id="${note.id}" th:data-title="${note.title}"
+                    th:data-content="${note.content}"
+                    onclick="openModal('view', this.getAttribute('data-id'), this.getAttribute('data-title'), this.getAttribute('data-content'))">
+                View
             </button>
-            <button class="btn-dark">Edit</button>
-            <a th:href="@{/notes/delete?noteId={noteId}(noteId=${note.id})}">
-                <button class="btn-dark">Delete</button>
-            </a>
+            <button class="btn-dark" th:data-id="${note.id}" th:data-title="${note.title}"
+                    th:data-content="${note.content}"
+                    onclick="openModal('edit', this.getAttribute('data-id'), this.getAttribute('data-title'), this.getAttribute('data-content'))">
+                Edit
+            </button>
+            <button type="submit" class="btn-dark">Delete</button>
+        </div>
+    </form>
+</div>
+
+<!-- View Modal -->
+<div id="view" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('view')">&times;</span>
+        <div class="modal-items">
+            <textarea class="textbox-invisible textarea textbox-title" id="viewModalTitle" readonly="true"></textarea>
+            <textarea id="viewModalContent" class="textbox-invisible textarea textarea-content"
+                      readonly="true"></textarea>
         </div>
     </div>
 </div>
 
-<!-- The Modal -->
-<div id="viewModal" class="modal">
-
-    <!-- Modal content -->
+<!-- Edit Modal -->
+<div id="edit" class="modal">
     <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <div class="modal-items">
-            <textarea class="textbox-invisible textarea textbox-title" id="viewModalTitle" readonly="true"></textarea>
-            <textarea id="viewModalContent" class="textbox-invisible textarea textarea-content" readonly="true"></textarea>
-        </div>
+        <span class="close" onclick="closeModal('edit')">&times;</span>
+        <form th:action="@{/notes/update}" method="POST">
+            <div class="modal-items gapped">
+                <input type="hidden" name="id" id="editModalId">
+                <input type="text" class="textbox light" name="title" id="editModalTitle" placeholder="Title" required>
+                <textarea id="editModalContent" class="textarea textarea-content textbox light" name="content"
+                          placeholder="Content" required></textarea>
+                <button class="btn-dark">Save</button>
+            </div>
+        </form>
     </div>
-
 </div>
 
 </body>

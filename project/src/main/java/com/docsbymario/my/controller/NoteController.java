@@ -63,12 +63,12 @@ public class NoteController {
         return redirectView;
     }
 
-    @GetMapping("/notes/delete")
-    public RedirectView deleteNote(Principal principal, @RequestParam(value="noteId", required=true) String noteId, RedirectAttributes redirectAttributes) {
+    @PostMapping("/notes/delete")
+    public RedirectView deleteNote(Principal principal, @ModelAttribute NoteDto noteDto, RedirectAttributes redirectAttributes) {
         RedirectView modelAndView = new RedirectView("/notes", true);
 
         try {
-            noteService.deleteNote(principal, noteId);
+            noteService.deleteNote(principal, noteDto);
             redirectAttributes.addAttribute("errorMessage", "The note has been deleted successfully.");
         } catch (GenericException e) {
             redirectAttributes.addAttribute("errorMessage", e.getAdditionalMessage());
@@ -76,4 +76,17 @@ public class NoteController {
 
         return modelAndView;
     }
-}
+
+    @PostMapping("/notes/update")
+    public RedirectView updateNote(Principal principal, @ModelAttribute NoteDto noteDto, RedirectAttributes redirectAttributes) {
+        RedirectView modelAndView = new RedirectView("/notes", true);
+
+        try {
+            noteService.updateNote(principal, noteDto);
+            redirectAttributes.addAttribute("errorMessage", "The note has been updated successfully.");
+        } catch (GenericException e) {
+            redirectAttributes.addAttribute("errorMessage", e.getAdditionalMessage());
+        }
+
+        return modelAndView;
+    }}

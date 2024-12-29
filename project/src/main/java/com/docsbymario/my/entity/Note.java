@@ -43,6 +43,15 @@ public class Note {
         this.content = content;
     }
 
+    public Note() {}
+
+    public Note(String id, String userId, String title, String content) {
+        this.id = id;
+        this.userId = userId;
+        this.title = title;
+        this.content = content;
+    }
+
     public Note(String userId, String title, String content) {
         this.userId = userId;
         this.title = title;
