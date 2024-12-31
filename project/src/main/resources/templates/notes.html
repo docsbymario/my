@@ -109,12 +109,12 @@
             <span th:text="${note.title}"></span>
         </div>
         <div class="box-grid-content secondary">
-            <button class="btn-dark" th:data-id="${note.id}" th:data-title="${note.title}"
+            <button type="button" class="btn-dark" th:data-id="${note.id}" th:data-title="${note.title}"
                     th:data-content="${note.content}"
                     onclick="openModal('view', this.getAttribute('data-id'), this.getAttribute('data-title'), this.getAttribute('data-content'))">
                 View
             </button>
-            <button class="btn-dark" th:data-id="${note.id}" th:data-title="${note.title}"
+            <button type="button"  class="btn-dark" th:data-id="${note.id}" th:data-title="${note.title}"
                     th:data-content="${note.content}"
                     onclick="openModal('edit', this.getAttribute('data-id'), this.getAttribute('data-title'), this.getAttribute('data-content'))">
                 Edit
